@@ -16,4 +16,4 @@ setDoubleRange({
 * **maxValue :** Maximum bar value
 * **MaxInfinite :** The value will be infinite if you move the cursor to the far right
 * **stepValue :** The step of increasing or decreasing for the value
-* **unite :** The unit of your values (
+* **unite :** The unit of your values
