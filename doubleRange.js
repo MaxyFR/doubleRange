@@ -84,7 +84,6 @@ function setDoubleRange(configDoubleRange)
 		inputMax.value = convertionPercentForValue(pourcentageMax, false);
 
 		//Gestion du maxInfinite (remplace la valeur du max par l'infini) :
-		console.log(pourcentageMax);
 		if(pourcentageMax > 99 && maxInfinite == true){ labelMax.textContent = '∞'; inputMax.value = ''; }
 	}
 
