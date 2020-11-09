@@ -1,5 +1,9 @@
 # Double Range Form
 
+## Example of result that you will be obtain
+
+![alt](https://github.com/MaxyFR/doubleRange/blob/main/doubleRangeScreen.JPG?raw=true)
+
 ## Get started
 
 As shown in the example.html page, here is the minimum code to get the double range form :
