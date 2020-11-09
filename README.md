@@ -41,6 +41,7 @@ As shown in the example.html page, here is the minimum code to get the double ra
 </html>
 ```
 The *"pmin"* and *"pmax"* fields will be automatically filled with the values chosen on the double range.
+
 The labels *"labelMin"* and *"labelMax"* will also be instantly filled when the values change.
 
 ## Configuration
