@@ -65,7 +65,7 @@ setDoubleRange({
 });
 ```
 
-* **element :**  ID or Class containing your double range
+* **element :**  ID (*"#element"*) or Class (*".element"*) containing your double range
 * **minValue :** Minimum bar value
 * **maxValue :** Maximum bar value
 * **MaxInfinite :** The value will be infinite if you move the cursor to the far right
