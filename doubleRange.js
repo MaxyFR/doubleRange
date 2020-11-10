@@ -7,6 +7,8 @@ function setDoubleRange(configDoubleRange)
 	var maxInfinite = configDoubleRange.maxInfinite;
 	var stepValue = configDoubleRange.stepValue;
 	var unite = configDoubleRange.unite;
+	var defaultMinValue = configDoubleRange.defaultMinValue;
+	var defaultMaxValue = configDoubleRange.defaultMaxValue;
 
 	var doubleRange = document.querySelector(classOrIDDoubleRange);
 	var barre = doubleRange.querySelector('.barre');
@@ -32,6 +34,8 @@ function setDoubleRange(configDoubleRange)
 	doubleRange.addEventListener("touchmove", drag, false);
 	document.addEventListener("touchend", dragStop, false);
 	
+	setDefaultValues();
+	
 	function dragStart(e){ draggable = true; targetToMove = e.target.className.split(' ')[0]; largeurBarre = barre.scrollWidth; margeLeftBarre = barre.getBoundingClientRect().left; }
 	function dragStop(){ draggable = false; targetToMove = false; }
 
@@ -56,6 +60,16 @@ function setDoubleRange(configDoubleRange)
 			majBarreMilieuETLabels();
 		}
 	}
+	
+	function setDefaultValues()
+	{
+		if(typeof defaultMinValue === 'undefined' || typeof defaultMaxValue === 'undefined'){ return false; }
+		if(defaultMinValue < minValue || defaultMinValue > maxValue || defaultMaxValue < minValue || defaultMaxValue > maxValue){ return false; }
+
+		thumb1.style.left = convertionValueToPercent(defaultMinValue)+'%';
+		thumb2.style.left = convertionValueToPercent(defaultMaxValue)+'%';
+		majBarreMilieuETLabels();
+	}
 
 	function majBarreMilieuETLabels()
 	{
@@ -76,18 +90,18 @@ function setDoubleRange(configDoubleRange)
 		barreMilieu.style.width = (pourcentageMax-pourcentageMin)+'%';
 
 		//Mise à jour des labels :
-		labelMin.textContent = convertionPercentForValue(pourcentageMin);
-		labelMax.textContent = convertionPercentForValue(pourcentageMax);
+		labelMin.textContent = convertionPercentToValue(pourcentageMin);
+		labelMax.textContent = convertionPercentToValue(pourcentageMax);
 
 		//Mise à jour des inputs :
-		inputMin.value = convertionPercentForValue(pourcentageMin, false);
-		inputMax.value = convertionPercentForValue(pourcentageMax, false);
+		inputMin.value = convertionPercentToValue(pourcentageMin, false);
+		inputMax.value = convertionPercentToValue(pourcentageMax, false);
 
 		//Gestion du maxInfinite (remplace la valeur du max par l'infini) :
 		if(pourcentageMax > 99 && maxInfinite == true){ labelMax.textContent = '∞'; inputMax.value = ''; }
 	}
 
-	function convertionPercentForValue(pourcentage, afficherUnite = true)
+	function convertionPercentToValue(pourcentage, afficherUnite = true)
 	{
 		//Converti le pourcentage en valeur par rapport au minValue et maxValue :
 		var resPFV = ((pourcentage*(maxValue-minValue))/100)+minValue;
@@ -97,5 +111,12 @@ function setDoubleRange(configDoubleRange)
 		if(afficherUnite){ resPFV = resPFV+' '+unite; }
 
 		return resPFV;
+	}
+	
+	function convertionValueToPercent(value)
+	{
+		var resPercent = ((value-minValue)*100)/(maxValue-minValue);
+
+		return resPercent;
 	}
 }
