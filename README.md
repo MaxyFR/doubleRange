@@ -70,6 +70,6 @@ setDoubleRange({
 * **maxValue :** Maximum bar value
 * **MaxInfinite :** The value will be infinite if you move the cursor to the far right
 * **stepValue :** The step of increasing or decreasing for the value
-* **defaultMinValue:** Default left thumb value
-* **defaultMaxValue:** Default right thumb value
+* **defaultMinValue:** Default left thumb value *(optional)*
+* **defaultMaxValue:** Default right thumb value *(optional)*
 * **unite :** The unit of your values
