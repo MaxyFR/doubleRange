@@ -38,6 +38,8 @@ As shown in the example.html page, here is the minimum code to get the double ra
             maxValue: 50000,
             maxInfinite: true,
             stepValue: 1000,
+	    defaultMinValue: 500,
+	    defaultMaxValue: 10000,
             unite: '€'
         });
     </script>
@@ -57,6 +59,8 @@ setDoubleRange({
     maxValue: 50000,
     maxInfinite: true,
     stepValue: 1000,
+    defaultMinValue: 500,
+    defaultMaxValue: 10000,
     unite: '€'
 });
 ```
@@ -66,4 +70,6 @@ setDoubleRange({
 * **maxValue :** Maximum bar value
 * **MaxInfinite :** The value will be infinite if you move the cursor to the far right
 * **stepValue :** The step of increasing or decreasing for the value
+* **defaultMinValue:** Default left thumb value
+* **defaultMaxValue:** Default right thumb value
 * **unite :** The unit of your values
