@@ -26,12 +26,14 @@ function setDoubleRange(configDoubleRange)
 	thumb1.addEventListener("mousedown", dragStart, false);
 	thumb2.addEventListener("mousedown", dragStart, false);
 	doubleRange.addEventListener("mousemove", drag, false);
+	doubleRange.addEventListener("mousedown", clickBar, false);
 	document.addEventListener("mouseup", dragStop, false);
 
 	//Detection du tactile pour les téléphone/tablettes... :
 	thumb1.addEventListener("touchstart", dragStart, false);
 	thumb2.addEventListener("touchstart", dragStart, false);
 	doubleRange.addEventListener("touchmove", drag, false);
+	doubleRange.addEventListener("touchstart", clickBar, false);
 	document.addEventListener("touchend", dragStop, false);
 	
 	setDefaultValues();
@@ -59,6 +61,31 @@ function setDoubleRange(configDoubleRange)
 			//Mise à jour de la barre du milieu et des labels :
 			majBarreMilieuETLabels();
 		}
+	}
+	
+	function clickBar(e)
+	{
+		//Detection de la position X de la souris :
+		var x = e.clientX;
+		//Detection de la position X pour le tactile :
+		if(e.type === 'touchmove'){ x = e.touches[0].clientX; }
+		var pourcentage = ((x-margeLeftBarre)*100)/largeurBarre;
+
+		//Detection du thumb le plus proche :
+		var percentThumb1 = parseInt(thumb1.style.left);
+		var percentThumb2 = parseInt(thumb2.style.left);
+
+		if(Math.abs(percentThumb1-pourcentage) <= Math.abs(percentThumb2-pourcentage))
+		{
+			thumb1.style.left = pourcentage+'%';
+		}
+		else
+		{
+			thumb2.style.left = pourcentage+'%';
+		}
+		
+		//Mise à jour de la barre du milieu et des labels :
+		majBarreMilieuETLabels();
 	}
 	
 	function setDefaultValues()
